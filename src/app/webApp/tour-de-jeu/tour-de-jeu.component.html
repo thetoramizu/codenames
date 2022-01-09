@@ -1,0 +1,69 @@
+<!--<div>-->
+<!--  <li *ngFor="let player of listPlayers">-->
+<!--    {{player.nom}}-->
+<!--  </li>-->
+<!--</div>-->
+
+
+<div class="chef">
+  Au tour de :
+  <div *ngFor="let joueur of doitJouer">
+    {{joueur.nom}}
+  </div>
+</div>
+
+
+<div class="chef" *ngIf="doitJouer[0]?.role === 'chef'">
+  <input matInput [matTooltip]="'mot'">
+  <input matInput [matTooltip]="'nombre'">
+</div>
+
+
+<div class="chef" *ngIf="doitJouer[0]?.role === 'neutre'">
+  <input matInput [matTooltip]="'mot'">
+</div>
+
+
+<div>
+  <button (click)="validateTurn()" mat-raised-button> Valider tour</button>
+</div>
+
+
+<!--<div class="recapitulatif" style="width: 49%">-->
+
+<!--  <li *ngFor="let step of listPlayedSteps">-->
+<!--    {{step.numeroEtape}}-->
+<!--    {{step.nom}}-->
+<!--    {{step.couleur}}-->
+<!--    {{step.mot}}-->
+<!--    {{step.nombre}}-->
+<!--  </li>-->
+
+<!--</div>-->
+
+<!--<div *ngIf="listPlayedSteps.length > 0">-->
+<!--  TSEE + {{listPlayedSteps[0]?.numeroEtape}} + {{listPlayedSteps.length}}-->
+<div style=" height: 500px; overflow-x: scroll;">
+
+  <table mat-table [dataSource]="dataSource" style="width: 55%; float: right;">
+    <ng-container matColumnDef="numeroEtape">
+      <th mat-header-cell *matHeaderCellDef> Etape</th>
+      <td mat-cell *matCellDef="let element"> {{element.numeroEtape}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef> nom</th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+    <ng-container matColumnDef="mot">
+      <th mat-header-cell *matHeaderCellDef> mot</th>
+      <td mat-cell *matCellDef="let element"> {{element.mot}} </td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> nombre</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.couleur === 'bleu'? 'bbll' : 'rrdd'"></tr>
+  </table>
+
+</div>

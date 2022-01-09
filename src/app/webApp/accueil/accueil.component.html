@@ -1,0 +1,37 @@
+<button (click)="getRandomCards()"> NEW GAME</button>
+<!--<button (click)="getCard(listCardsInPlay.length + 1)"> One Card Alea</button>-->
+<!--<button (click)="remplirMots()"> Remplir mots</button>-->
+<!--<button (click)="clearListMots()"> Vider Mots</button>-->
+<button (click)="selectFirstPlayer()" [disabled]="gameSetup"> Premier Joueur</button>
+<!--<button (click)="setBlue()"> Set Blue</button>-->
+<!--<button (click)="setRed()"> Set Red</button>-->
+<!--<button (click)="setBlack()"> Set Black</button>-->
+<!--<button (click)="test400Mots()">400 Mots</button>-->
+<!--<button (click)="addNewMots()">Ajouter mots</button>-->
+
+<div class=firstPlayer>
+  <mat-radio-group aria-label="Select an option" [(ngModel)]="firstPlayer">
+    <mat-radio-button value="blue">Bleu</mat-radio-button>
+    <mat-radio-button value="red">Rouge</mat-radio-button>
+    <mat-radio-button value="random">Aléatoire</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div class="color1stPlayer" [ngClass]="nbMotsBleus > nbMotsRouges ? 'blue' : 'red'" style="height: 97%">
+  <div class="listCards">
+    <div class="card" [ngClass]="mot.couleur === 'bleu' ? 'blue' :
+   mot.couleur === 'rouge' ? 'red' :
+   mot.couleur === 'noir' ? 'black' : 'neutral'"
+         *ngFor="let mot of listCardsInPlay">
+      <div class="nomMot">
+        {{mot.nom}}
+      </div>
+    </div>
+  </div>
+
+
+  <app-tour-de-jeu *ngIf="gameSetup" [joueurActif]="joueurActif"></app-tour-de-jeu>
+
+
+</div>
+
